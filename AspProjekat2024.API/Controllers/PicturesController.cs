@@ -35,7 +35,8 @@ namespace AspProjekat2024.API.Controllers
         // POST api/<PicturesController>
         [HttpPost]
         [Authorize]
-        public IActionResult Post([FromBody] CreatePictureDto dto, [FromServices] ICreatePictureCommand command)
+        [Consumes("multipart/form-data")]
+        public IActionResult Post([FromForm] CreatePictureDto dto, [FromServices] ICreatePictureCommand command)
         {
             try
             {
@@ -46,9 +47,6 @@ namespace AspProjekat2024.API.Controllers
             {
                 return StatusCode(500);
             }
-
-
-
         }
 
         // PUT api/<PicturesController>/5
