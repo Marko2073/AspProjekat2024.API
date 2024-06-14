@@ -35,20 +35,28 @@ namespace AspProjekat2024.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] RegisterUserDto dto, [FromServices] IRegisterUserCommand cmd)
         {
-            _handler.HandeCommand(cmd, dto);
+            _handler.HandleCommand(cmd, dto);
             return StatusCode(201);
         }
 
-        // PUT api/<UsersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        ///api/users/5/access
+
+        [HttpPut("{id}/access")]
+        public IActionResult ModifyAccess(int id, [FromBody] UpdateUserAccessDto dto,
+                                                  [FromServices] IUpdateUseAccessCommand command)
+        {
+            dto.UserId = id;
+            _handler.HandleCommand(command, dto);
+
+            return NoContent();
         }
     }
 }

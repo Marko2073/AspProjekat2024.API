@@ -27,7 +27,7 @@ namespace AspProjekat2024.Implementation
         }
 
 
-        public void HandeCommand<TRequest>(ICommand<TRequest> command, TRequest data)
+        public void HandleCommand<TRequest>(ICommand<TRequest> command, TRequest data)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace AspProjekat2024.Implementation
             }
             
         }
-        public TResponse HandeQuery<TRequest, TResponse>(IQuery<TRequest, TResponse> query, TRequest data)
+        public TResponse HandleQuery<TRequest, TResponse>(IQuery<TRequest, TResponse> query, TRequest data)
         {
             try
             {

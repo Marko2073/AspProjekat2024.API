@@ -26,7 +26,7 @@ namespace AspProjekat2024.API.Controllers
         [Authorize]
         public IActionResult Get([FromQuery]BaseSearch search, [FromServices] IGetBrandsQuery query)
         {
-            return Ok(_handler.HandeQuery(query, search));
+            return Ok(_handler.HandleQuery(query, search));
         }
 
         // GET api/<BrandsController>/5
@@ -42,7 +42,7 @@ namespace AspProjekat2024.API.Controllers
         {
             try
             {
-                _handler.HandeCommand(command, dto);
+                _handler.HandleCommand(command, dto);
                 return StatusCode(201);
             }
             catch

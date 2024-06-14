@@ -25,6 +25,8 @@ namespace AspYt.API.Core
             services.AddTransient<IExceptionLogger, ConsoleExceptionLogger>();
             services.AddTransient<IRegisterUserCommand, EfRegisterUserCommand>();
             services.AddTransient<RegisterUserDtoValidator>();
+            services.AddTransient<IUpdateUseAccessCommand, EfUpdateUserAccessCommand>();
+            services.AddTransient<UpdateUserAccessDtoValidator>();
             services.AddTransient<IUseCaseLogger, EfUseCaseLogger>();
         }
 
