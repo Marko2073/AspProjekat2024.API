@@ -11,7 +11,7 @@ using AspProjekat2024.Application;
 using AspProjekat2024.API.Core;
 using AspProjekat2024.Application.Mail;
 
-namespace AspYt.API.Core
+namespace AspProjekat2024.API.Core
 {
     public static class ContainerExtensions
     {
@@ -34,6 +34,7 @@ namespace AspYt.API.Core
             services.AddTransient<CreateSpecificationDtoValidator>();
             services.AddTransient<ICreateModelVersionCommand, EfCreateModelVesionsCommand>();
             services.AddTransient<CreateModelVersionDtoValidator>();
+            services.AddTransient<IExLogger, DbExceptionLogger>();
 
             // Replace with your Gmail credentials and app password
             services.AddTransient<IEmailService>(provider =>

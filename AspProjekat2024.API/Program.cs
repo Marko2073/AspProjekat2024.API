@@ -10,7 +10,6 @@ using AspProjekat2024.Implementation.Logging;
 using AspProjekat2024.Implementation.UseCases.Commands.Ef;
 using AspProjekat2024.Implementation.UseCases.Queries.Ef;
 using AspProjekat2024.Implementation.Validators;
-using AspYt.API.Core;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -110,6 +109,9 @@ builder.Services.AddAuthentication(options =>
 
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

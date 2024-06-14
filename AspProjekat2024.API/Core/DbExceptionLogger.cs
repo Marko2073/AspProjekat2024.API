@@ -1,23 +1,20 @@
-﻿using AspProjekat2024.Application.Logging;
+﻿using AspProjekat2024.Application;
 using AspProjekat2024.DataAccess;
 using AspProjekat2024.Domain;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AspProjekat2024.Implementation.Logging
+namespace AspProjekat2024.API.Core
 {
-    public class ConsoleExceptionLogger : IExceptionLogger
+    public class DbExceptionLogger : IExLogger
     {
         private readonly DatabaseContext _context;
-        public ConsoleExceptionLogger(DatabaseContext context)
+
+        public DbExceptionLogger(DatabaseContext context)
         {
-                _context = context;
+            _context = context;
+            
         }
-        public void Log(Exception ex)
+
+        public Guid Log(Exception ex, IApplicationActor actor)
         {
             Guid id = Guid.NewGuid();
             var log = new ErrorLog
@@ -27,9 +24,12 @@ namespace AspProjekat2024.Implementation.Logging
                 StrackTrace = ex.StackTrace,
                 Time = DateTime.UtcNow,
             };
+
             _context.ErrorLogs.Add(log);
 
             _context.SaveChanges();
+
+            return id;
         }
     }
 }

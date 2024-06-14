@@ -1,6 +1,7 @@
 ﻿using AspProjekat2024.Application.DTO;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -50,6 +51,7 @@ namespace AspProjekat2024.API.Controllers
         ///api/users/5/access
 
         [HttpPut("{id}/access")]
+        [Authorize]
         public IActionResult ModifyAccess(int id, [FromBody] UpdateUserAccessDto dto,
                                                   [FromServices] IUpdateUseAccessCommand command)
         {
