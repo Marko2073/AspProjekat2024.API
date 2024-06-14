@@ -35,6 +35,8 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<ICreateModelVersionCommand, EfCreateModelVesionsCommand>();
             services.AddTransient<CreateModelVersionDtoValidator>();
             services.AddTransient<IExLogger, DbExceptionLogger>();
+            services.AddTransient<ICreateModelVersionSpecification, EfCreateModelVersionSpecificationCommand>();
+            services.AddTransient<CreateModelVersionSpecificationDtoValidator>();
 
             // Replace with your Gmail credentials and app password
             services.AddTransient<IEmailService>(provider =>

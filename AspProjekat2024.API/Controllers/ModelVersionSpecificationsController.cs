@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspProjekat2024.Application.DTO.Creates;
+using AspProjekat2024.Application.UseCases.Commands;
+using AspProjekat2024.Implementation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +13,11 @@ namespace AspProjekat2024.API.Controllers
     [ApiController]
     public class ModelVersionSpecificationsController : ControllerBase
     {
+        private UseCaseHandler _handler;
+        public ModelVersionSpecificationsController(UseCaseHandler handler)
+        {
+            _handler = handler;
+        }
         // GET: api/<ModelVersionSpecificationsController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +34,18 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<ModelVersionSpecificationsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Authorize]
+        public IActionResult Post([FromBody] CreateModelVersionSpecificationDto dto, [FromServices] ICreateModelVersionSpecification command)
         {
+            try
+            {
+                _handler.HandleCommand(command, dto);
+                return StatusCode(201);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500);
+            }
         }
 
         // PUT api/<ModelVersionSpecificationsController>/5
