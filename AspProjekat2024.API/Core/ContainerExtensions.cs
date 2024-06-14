@@ -1,5 +1,4 @@
-﻿
-using AspProjekat2024.Application.Logging;
+﻿using AspProjekat2024.Application.Logging;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation.Logging;
@@ -10,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using AspProjekat2024.Implementation.Validators;
 using AspProjekat2024.Application;
 using AspProjekat2024.API.Core;
+using AspProjekat2024.Application.Mail;
 
 namespace AspYt.API.Core
 {
@@ -28,6 +28,14 @@ namespace AspYt.API.Core
             services.AddTransient<IUpdateUseAccessCommand, EfUpdateUserAccessCommand>();
             services.AddTransient<UpdateUserAccessDtoValidator>();
             services.AddTransient<IUseCaseLogger, EfUseCaseLogger>();
+            services.AddTransient<CreateBrandDtoValidator>();
+            services.AddTransient<CreateModelDtoValidator>();
+            services.AddTransient<ICreateSpecificationCommand, EfCreateSpecificationCommand>();
+            services.AddTransient<CreateSpecificationDtoValidator>();
+
+            // Replace with your Gmail credentials and app password
+            services.AddTransient<IEmailService>(provider =>
+                new EmailService("smtp.gmail.com", 587, "marko.markovic.33.21@ict.edu.rs", "huvumdbwlqayjfzm"));
         }
 
         public static Guid? GetTokenId(this HttpRequest request)
@@ -39,7 +47,7 @@ namespace AspYt.API.Core
 
             string authHeader = request.Headers["Authorization"].ToString();
 
-            if(authHeader.Split("Bearer ").Length != 2)
+            if (authHeader.Split("Bearer ").Length != 2)
             {
                 return null;
             }
