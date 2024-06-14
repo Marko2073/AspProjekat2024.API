@@ -32,6 +32,8 @@ namespace AspYt.API.Core
             services.AddTransient<CreateModelDtoValidator>();
             services.AddTransient<ICreateSpecificationCommand, EfCreateSpecificationCommand>();
             services.AddTransient<CreateSpecificationDtoValidator>();
+            services.AddTransient<ICreateModelVersionCommand, EfCreateModelVesionsCommand>();
+            services.AddTransient<CreateModelVersionDtoValidator>();
 
             // Replace with your Gmail credentials and app password
             services.AddTransient<IEmailService>(provider =>
