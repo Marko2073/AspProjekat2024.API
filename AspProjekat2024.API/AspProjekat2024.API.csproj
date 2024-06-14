@@ -23,4 +23,9 @@
     <ProjectReference Include="..\AspProjekat2024.Implementation\AspProjekat2024.Implementation.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\temp\" />
+  </ItemGroup>
+
 </Project>

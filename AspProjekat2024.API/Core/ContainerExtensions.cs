@@ -37,6 +37,8 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<IExLogger, DbExceptionLogger>();
             services.AddTransient<ICreateModelVersionSpecification, EfCreateModelVersionSpecificationCommand>();
             services.AddTransient<CreateModelVersionSpecificationDtoValidator>();
+            services.AddTransient<ICreatePictureCommand, EfCreatePictureCommand>();
+            services.AddTransient<CreatePictureDtoValidator>();
 
             // Replace with your Gmail credentials and app password
             services.AddTransient<IEmailService>(provider =>
