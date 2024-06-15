@@ -1,10 +1,10 @@
-﻿using AspProjekat2024.Application.DTO.Creates;
-using AspProjekat2024.Application.DTO.Searches;
+﻿using AspProjekat2024.Application.DTO;
+using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.UseCases.Commands;
-using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,34 +12,31 @@ namespace AspProjekat2024.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : ControllerBase
+    public class ConfirmPurchaseController : ControllerBase
     {
         private UseCaseHandler _handler;
-        public BrandsController(UseCaseHandler handler)
+        public ConfirmPurchaseController(UseCaseHandler handler)
         {
             _handler = handler;
         }
-        
-
-        // GET: api/<BrandsController>
+        // GET: api/<ConfirmPurchaseController>
         [HttpGet]
-        [Authorize]
-        public IActionResult Get([FromQuery]BaseSearch search, [FromServices] IGetBrandsQuery query)
+        public IEnumerable<string> Get()
         {
-            return Ok(_handler.HandleQuery(query, search));
+            return new string[] { "value1", "value2" };
         }
 
-        // GET api/<BrandsController>/5
+        // GET api/<ConfirmPurchaseController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<BrandsController>
+        // POST api/<ConfirmPurchaseController>
         [HttpPost]
         [Authorize]
-        public IActionResult Post([FromBody] CreateBrandDto dto, [FromServices] ICreateBrandCommand command)
+        public IActionResult Post([FromBody] CreateConfirmPurchaseDto dto, [FromServices] ICreateConfirmPurchaseCommand command)
         {
             try
             {
@@ -51,17 +48,17 @@ namespace AspProjekat2024.API.Controllers
                 return StatusCode(500);
             }
 
-            
+
 
         }
 
-        // PUT api/<BrandsController>/5
+        // PUT api/<ConfirmPurchaseController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<BrandsController>/5
+        // DELETE api/<ConfirmPurchaseController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

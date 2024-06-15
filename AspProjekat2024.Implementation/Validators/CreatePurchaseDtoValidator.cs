@@ -1,0 +1,50 @@
+﻿using AspProjekat2024.Application.DTO.Creates;
+using AspProjekat2024.DataAccess;
+using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AspProjekat2024.Implementation.Validators
+{
+    public class CreatePurchaseDtoValidator : AbstractValidator<CreatePurchaseDto>
+    {
+        private readonly DatabaseContext _context;
+
+        public CreatePurchaseDtoValidator(DatabaseContext context)
+        {
+            _context = context;
+
+            RuleFor(x => x.Quantity)
+                .NotEmpty()
+                .WithMessage("Quantity is required.")
+                .GreaterThan(0)
+                .WithMessage("Quantity must be greater than 0.");
+
+            RuleFor(x => x.ModelVersionId)
+                .NotEmpty()
+                .WithMessage("Model version is required.")
+                .Must(ModelVersionExists)
+                .WithMessage("Model version does not exist.");
+
+            RuleFor(x => x.UserCartId)
+                .NotEmpty()
+                .WithMessage("User cart is required.")
+                .Must(UserCartExists)
+                .WithMessage("User cart does not exist.");
+        }
+
+        private bool ModelVersionExists(int modelVersionId)
+        {
+            return _context.ModelVersions.Any(x => x.Id == modelVersionId);
+        }
+
+        private bool UserCartExists(int userCartId)
+        {
+            return _context.UserCarts.Any(x => x.Id == userCartId);
+        }
+
+    }
+}

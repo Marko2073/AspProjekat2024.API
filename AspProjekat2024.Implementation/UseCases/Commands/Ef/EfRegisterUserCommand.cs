@@ -46,6 +46,10 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
                 {
                     new UserUseCase { UseCaseId = 1 },
                     new UserUseCase { UseCaseId = 3 }
+                },
+                UserCarts = new List<UserCart>()
+                {
+                    new UserCart()
                 }
             };
 
