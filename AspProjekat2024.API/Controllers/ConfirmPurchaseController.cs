@@ -1,5 +1,4 @@
-﻿using AspProjekat2024.Application.DTO;
-using AspProjekat2024.Application.DTO.Creates;
+﻿using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;

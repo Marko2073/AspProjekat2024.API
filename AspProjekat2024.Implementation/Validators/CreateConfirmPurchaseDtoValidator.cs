@@ -1,4 +1,4 @@
-﻿using AspProjekat2024.Application.DTO;
+﻿using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.DataAccess;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
