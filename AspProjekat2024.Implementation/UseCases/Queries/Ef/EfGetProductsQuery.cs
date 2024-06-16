@@ -41,7 +41,6 @@ namespace AspProjekat2024.Implementation.UseCases.Queries.Ef
                 query = query.Where(x => x.ModelVersionSpecifications.Any(y => search.SpecificationIds.Contains(y.SpecificationId)));
             }
 
-            // Dodavanje paginacije
             var skipCount = (search.Page.GetValueOrDefault(1) - 1) * search.ItemsPerPage.GetValueOrDefault(5);
             query = query.Skip(skipCount).Take(search.ItemsPerPage.GetValueOrDefault(5));
 
