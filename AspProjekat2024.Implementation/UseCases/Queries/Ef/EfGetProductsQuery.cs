@@ -38,8 +38,22 @@ namespace AspProjekat2024.Implementation.UseCases.Queries.Ef
             }
             if (search.SpecificationIds != null && search.SpecificationIds.Any())
             {
-                query = query.Where(x => x.ModelVersionSpecifications.Any(y => search.SpecificationIds.Contains(y.SpecificationId)));
+                var specifications = Context.Specifications
+                    .Where(s => search.SpecificationIds.Contains(s.Id))
+                    .Select(s => new { s.Id, s.ParentId })
+                    .ToList();
+
+                var groupedSpecIds = specifications
+                    .GroupBy(s => s.ParentId)
+                    .ToList();
+
+                foreach (var group in groupedSpecIds)
+                {
+                    var specIds = group.Select(g => g.Id).ToList();
+                    query = query.Where(modelVersion => modelVersion.ModelVersionSpecifications.Any(spec => specIds.Contains(spec.SpecificationId)));
+                }
             }
+
 
             var skipCount = (search.Page.GetValueOrDefault(1) - 1) * search.ItemsPerPage.GetValueOrDefault(5);
             query = query.Skip(skipCount).Take(search.ItemsPerPage.GetValueOrDefault(5));
