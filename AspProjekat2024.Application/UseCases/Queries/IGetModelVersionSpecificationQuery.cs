@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AspProjekat2024.Application.UseCases.Queries
 {
-    public interface IGetBrandsQuery : IQuery<BaseSearch, IEnumerable<BrandDto>>
+    public interface IGetModelVersionSpecificationQuery : IQuery<BaseSearch, IEnumerable<ModelVersionSpecificationDto>>
     {
     }
 }

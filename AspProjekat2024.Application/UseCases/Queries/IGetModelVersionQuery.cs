@@ -1,4 +1,4 @@
-﻿using AspProjekat2024.Application.DTO;
+﻿using AspProjekat2024.Application.DTO.Gets;
 using AspProjekat2024.Application.DTO.Searches;
 using System;
 using System.Collections.Generic;
