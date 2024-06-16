@@ -52,6 +52,7 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<UpdateBrandDtoValidator>();
             services.AddTransient<IUpdateModelCommand, EfUpdateModelCommand>();
             services.AddTransient<UpdateModelDtoValidator>();
+            services.AddTransient<IGetModelVersionQuery, EfGetModelVersionsQuery>();
 
 
 
