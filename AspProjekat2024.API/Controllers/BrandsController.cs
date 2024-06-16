@@ -1,5 +1,6 @@
 ﻿using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.DTO.Searches;
+using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
@@ -57,8 +58,20 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<BrandsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] UpdateBrandDto dto, [FromServices] IUpdateBrandCommand command)
         {
+            dto.Id = id;
+            try
+            {
+                _handler.HandleCommand(command, dto);
+                return StatusCode(204);
+
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+            
         }
 
         // DELETE api/<BrandsController>/5

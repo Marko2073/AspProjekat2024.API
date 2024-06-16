@@ -48,7 +48,10 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<ICreateConfirmPurchaseCommand, EfCreateConfirmPurchaseCommand>();
             services.AddTransient<CreateConfirmPurchaseDtoValidator>();
             services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
-
+            services.AddTransient<IUpdateBrandCommand, EfUpdateBrandCommand>();
+            services.AddTransient<UpdateBrandDtoValidator>();
+            services.AddTransient<IUpdateModelCommand, EfUpdateModelCommand>();
+            services.AddTransient<UpdateModelDtoValidator>();
 
             // Replace with your Gmail credentials and app password
             services.AddTransient<IEmailService>(provider =>
