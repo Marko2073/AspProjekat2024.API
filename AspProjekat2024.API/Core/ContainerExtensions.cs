@@ -54,11 +54,14 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<UpdateModelDtoValidator>();
             services.AddTransient<IGetModelVersionQuery, EfGetModelVersionsQuery>();
             services.AddTransient<IGetModelVersionSpecificationQuery, EfGetModelVersionSpecificationQuery>();
-
             services.AddTransient<IUpdateModelVersionCommand, EfUpdateModelVersionCommand>();
             services.AddTransient<UpdateModelVersionDtoValidator>();
             services.AddTransient<IUpdateModelVersionSpecificationsCommand, EfUpdateModeLVersionSpecificationsCommand>();
             services.AddTransient<UpdateModelVersionSpecificationsDtoValidator>();
+            services.AddTransient<IGetPicturesQuery,EfGetPicturesQuery>();
+            services.AddTransient<IUpdatePictureCommand, EfUpdatePictureCommand>();
+            services.AddTransient<UpdatePictureDtoValidator>();
+
 
 
 

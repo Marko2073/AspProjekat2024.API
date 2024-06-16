@@ -1,5 +1,8 @@
 ﻿using AspProjekat2024.Application.DTO.Creates;
+using AspProjekat2024.Application.DTO.Searches;
+using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
+using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +23,11 @@ namespace AspProjekat2024.API.Controllers
         }
         // GET: api/<PicturesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] BaseSearch search, [FromServices] IGetPicturesQuery query)
         {
-            return new string[] { "value1", "value2" };
-        }
+            return Ok(_handler.HandleQuery(query, search));
 
+        }
         // GET api/<PicturesController>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -51,8 +54,19 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<PicturesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [Consumes("multipart/form-data")]
+        public IActionResult Put(int id,[FromForm] UpdatePictureDto dto, [FromServices] IUpdatePictureCommand command)
         {
+            try
+            {
+                dto.Id = id;
+                _handler.HandleCommand(command, dto);
+                return StatusCode(201);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         // DELETE api/<PicturesController>/5
