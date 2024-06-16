@@ -53,7 +53,12 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<IUpdateModelCommand, EfUpdateModelCommand>();
             services.AddTransient<UpdateModelDtoValidator>();
 
-            // Replace with your Gmail credentials and app password
+
+
+
+
+
+
             services.AddTransient<IEmailService>(provider =>
                 new EmailService("smtp.gmail.com", 587, "marko.markovic.33.21@ict.edu.rs", "huvumdbwlqayjfzm"));
         }
