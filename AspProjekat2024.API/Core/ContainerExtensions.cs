@@ -62,6 +62,8 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<IUpdatePictureCommand, EfUpdatePictureCommand>();
             services.AddTransient<UpdatePictureDtoValidator>();
             services.AddTransient<IGetPriceQuery, EfGetPricesQuery>();
+            services.AddTransient<IUpdatePriceCommand, EfUpdatePriceCommand>();
+            services.AddTransient<UpdatePriceDtoValidator>();
 
 
 

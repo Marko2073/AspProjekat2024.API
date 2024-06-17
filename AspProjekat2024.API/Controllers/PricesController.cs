@@ -1,5 +1,6 @@
 ﻿using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.DTO.Searches;
+using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
@@ -49,8 +50,13 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<PricesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id,[FromBody] UpdatePriceDto dto, [FromServices] IUpdatePriceCommand command)
         {
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
+
+
+
         }
 
         // DELETE api/<PricesController>/5
