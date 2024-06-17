@@ -42,17 +42,10 @@ namespace AspProjekat2024.API.Controllers
         [Authorize]
         public IActionResult Post([FromBody] CreateBrandDto dto, [FromServices] ICreateBrandCommand command)
         {
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
 
-            
+
 
         }
 
@@ -61,17 +54,9 @@ namespace AspProjekat2024.API.Controllers
         public IActionResult Put(int id, [FromBody] UpdateBrandDto dto, [FromServices] IUpdateBrandCommand command)
         {
             dto.Id = id;
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(204);
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
 
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
-            
         }
 
         // DELETE api/<BrandsController>/5

@@ -40,15 +40,8 @@ namespace AspProjekat2024.API.Controllers
         [Authorize]
         public IActionResult Post([FromBody] CreatePriceDto dto, [FromServices] ICreatePriceCommand command)
         {
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
 
 
 

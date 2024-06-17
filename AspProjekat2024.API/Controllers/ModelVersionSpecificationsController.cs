@@ -41,33 +41,17 @@ namespace AspProjekat2024.API.Controllers
         [Authorize]
         public IActionResult Post([FromBody] CreateModelVersionSpecificationDto dto, [FromServices] ICreateModelVersionSpecification command)
         {
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }
-            catch(Exception ex)
-            {
-                return StatusCode(500);
-            }
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         // PUT api/<ModelVersionSpecificationsController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] UpdateModelVersionSpecificationsDto dto, [FromServices] IUpdateModelVersionSpecificationsCommand command)
         {
-            try
-            {
-
-                dto.ModelVersionId = id;
-                _handler.HandleCommand(command, dto);
-                return StatusCode(204);
-            }
-            catch
-            {
-                return StatusCode(500);
-
-            }
+            dto.ModelVersionId = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
         }
 
         // DELETE api/<ModelVersionSpecificationsController>/5

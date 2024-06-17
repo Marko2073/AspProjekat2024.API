@@ -34,14 +34,8 @@ namespace AspProjekat2024.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] CreateUserCartDto dto, [FromServices] ICreateUserCartCommand command)
         {
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }catch
-            {
-                return StatusCode(500);
-            }
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
 
         }
 

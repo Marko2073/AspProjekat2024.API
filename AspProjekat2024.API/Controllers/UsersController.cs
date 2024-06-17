@@ -52,10 +52,9 @@ namespace AspProjekat2024.API.Controllers
 
         [HttpPut("{id}/access")]
         [Authorize]
-        public IActionResult ModifyAccess(int id, [FromBody] UpdateUserAccessDto dto,
-                                                  [FromServices] IUpdateUseAccessCommand command)
+        public IActionResult ModifyAccess(int id, [FromBody] UpdateUserAccessDto dto, [FromServices] IUpdateUseAccessCommand command)
         {
-            dto.UserId = id;
+                dto.UserId = id;
             _handler.HandleCommand(command, dto);
 
             return NoContent();

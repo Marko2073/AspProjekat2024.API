@@ -40,33 +40,17 @@ namespace AspProjekat2024.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] CreateModelDto dto, [FromServices] ICreateModelCommand command)
         {
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         // PUT api/<ModelsController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] UpdateModelDto dto, [FromServices] IUpdateModelCommand command)
         {
-            try
-            {
-
-                dto.Id = id;
-                _handler.HandleCommand(command, dto);
-                return StatusCode(204);
-            }
-            catch
-            {
-                return StatusCode(500);
-
-            }
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
         }
 
         // DELETE api/<ModelsController>/5

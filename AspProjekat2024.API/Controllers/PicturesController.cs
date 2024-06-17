@@ -41,15 +41,8 @@ namespace AspProjekat2024.API.Controllers
         [Consumes("multipart/form-data")]
         public IActionResult Post([FromForm] CreatePictureDto dto, [FromServices] ICreatePictureCommand command)
         {
-            try
-            {
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         // PUT api/<PicturesController>/5
@@ -57,16 +50,9 @@ namespace AspProjekat2024.API.Controllers
         [Consumes("multipart/form-data")]
         public IActionResult Put(int id,[FromForm] UpdatePictureDto dto, [FromServices] IUpdatePictureCommand command)
         {
-            try
-            {
-                dto.Id = id;
-                _handler.HandleCommand(command, dto);
-                return StatusCode(201);
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         // DELETE api/<PicturesController>/5
