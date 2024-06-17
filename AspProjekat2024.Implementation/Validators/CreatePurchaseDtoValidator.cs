@@ -17,11 +17,7 @@ namespace AspProjekat2024.Implementation.Validators
         {
             _context = context;
 
-            RuleFor(x => x.Quantity)
-                .NotEmpty()
-                .WithMessage("Quantity is required.")
-                .GreaterThan(0)
-                .WithMessage("Quantity must be greater than 0.");
+           
 
             RuleFor(x => x.ModelVersionId)
                 .NotEmpty()
@@ -45,6 +41,8 @@ namespace AspProjekat2024.Implementation.Validators
         {
             return _context.UserCarts.Any(x => x.Id == userCartId);
         }
+
+        
 
     }
 }

@@ -44,8 +44,6 @@ namespace AspProjekat2024.API.Controllers
             _handler.HandleCommand(command, dto);
             return StatusCode(201);
 
-
-
         }
 
         // PUT api/<PricesController>/5

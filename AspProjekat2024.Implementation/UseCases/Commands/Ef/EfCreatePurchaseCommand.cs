@@ -1,4 +1,5 @@
 ﻿using AspProjekat2024.Application.DTO.Creates;
+using AspProjekat2024.Application.Exceptions;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.DataAccess;
 using AspProjekat2024.Implementation.Validators;
@@ -33,25 +34,46 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
             var existingPurchase = Context.Purchases.Where(x => x.ModelVersionId == request.ModelVersionId && x.UserCartId == request.UserCartId).FirstOrDefault();
             if(existingPurchase != null)
             {
-                existingPurchase.Quantity += request.Quantity;
-                Context.SaveChanges();
-                return;
+                var isProccesed=existingPurchase.UserCart.IsProcessed;
+                if(isProccesed)
+                {
+                    throw new ConflictException("Cart is proccesed");
+                }
+                else
+                {
+                    if (existingPurchase.Quantity + request.Quantity <= 0)
+                    {
+                        Context.Purchases.Remove(existingPurchase);
+                        Context.SaveChanges();
+                        return;
+
+                    }
+
+                    existingPurchase.Quantity += request.Quantity;
+                    Context.SaveChanges();
+                    return;
+                }
+                    
+                
             }
             else
             {
                 _validator.ValidateAndThrow(request);
-                // Add the new Purchase to the context
-                Context.Purchases.Add(new Domain.Purchase
+                if(request.Quantity > 0)
                 {
-                    Quantity = request.Quantity,
-                    ModelVersionId = request.ModelVersionId,
-                    UserCartId = request.UserCartId
-                });
+                    Context.Purchases.Add(new Domain.Purchase
+                    {
+                        Quantity = request.Quantity,
+                        ModelVersionId = request.ModelVersionId,
+                        UserCartId = request.UserCartId
+                    });
+
+
+                }
 
 
             }
 
-            // Save changes to the database
             Context.SaveChanges();
 
             
