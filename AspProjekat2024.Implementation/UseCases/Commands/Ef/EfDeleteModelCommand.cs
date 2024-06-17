@@ -1,6 +1,7 @@
 ﻿using AspProjekat2024.Application.DTO;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.DataAccess;
+using AspProjekat2024.Implementation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
 {
     public class EfDeleteModelCommand : EfUseCase, IDeleteModelCommand
     {
-        public EfDeleteModelCommand(DatabaseContext context) : base(context)
+        private readonly DeleteModelDtoValidator _validator;
+        public EfDeleteModelCommand(DatabaseContext context, DeleteModelDtoValidator validator) : base(context)
         {
+            _validator = validator;
         }
 
         public int Id => 29;
