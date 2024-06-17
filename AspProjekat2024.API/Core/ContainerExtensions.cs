@@ -67,6 +67,8 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<IGetSpecificationsQuery, EfGetSpecificationsQuery>();
             services.AddTransient<IUpdateSpecificationCommand, EfUpdateSpecificationCommand>();
             services.AddTransient<UpdateSpecificationDtoValidator>();
+            services.AddTransient<IDeleteBrandCommand, EfDeleteBrandCommand>();
+            services.AddTransient<DeleteBrandDtoValidator>();
 
 
 
