@@ -1,4 +1,5 @@
 ﻿using AspProjekat2024.Application.DTO;
+using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;
@@ -47,6 +48,19 @@ namespace AspProjekat2024.API.Controllers
         public void Delete(int id)
         {
         }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        [Consumes("multipart/form-data")]
+
+        public IActionResult Put(int id, [FromBody] UpdateUserDto dto, [FromServices] IUpdateUserCommand command)
+        {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+
+            return NoContent();
+        }
+
 
         ///api/users/5/access
 
