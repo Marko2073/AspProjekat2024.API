@@ -22,7 +22,7 @@ namespace AspProjekat2024.Implementation.Validators
 
             RuleFor(x => x.UseCaseIds)
                 .NotEmpty().WithMessage("Parameter is required.")
-                .Must(x => x.All(id => id > 0 && id <=44)).WithMessage("Invalid usecase id range.")
+                .Must(x => x.All(id => id > 0 && id <=45)).WithMessage("Invalid usecase id range.")
                 .Must(x => x.Distinct().Count() == x.Count()).WithMessage("Only unique usecase ids must be delivered.");
 
 

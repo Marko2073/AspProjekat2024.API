@@ -94,6 +94,7 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<IGetUsersQuery, EfGetUserQuery>();
             services.AddTransient<IGetOneUserQuery, EfGetOneUserQuery>();
             services.AddTransient<IGetOneSpecificationQuery, EfGetOneSpecificationQuery >();
+            services.AddTransient<IGetLogsQuery, EfGetLogsQuery>();
 
 
 
