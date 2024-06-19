@@ -45,7 +45,21 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
                 UseCases = new List<UserUseCase>()
                 {
                     new UserUseCase { UseCaseId = 1 },
-                    new UserUseCase { UseCaseId = 3 }
+                    new UserUseCase { UseCaseId = 4 },
+                    new UserUseCase { UseCaseId = 13 },
+                    new UserUseCase { UseCaseId = 14 },
+                    new UserUseCase { UseCaseId = 15 },
+                    new UserUseCase { UseCaseId = 18 },
+                    new UserUseCase { UseCaseId = 20 },
+                    new UserUseCase { UseCaseId = 22 },
+                    new UserUseCase { UseCaseId = 24 },
+                    new UserUseCase { UseCaseId = 26 },
+                    new UserUseCase { UseCaseId = 36 },
+                    new UserUseCase { UseCaseId = 37 },
+                    new UserUseCase { UseCaseId = 38 },
+                    new UserUseCase { UseCaseId = 39 },
+                    new UserUseCase { UseCaseId = 40 },
+                    new UserUseCase { UseCaseId = 44 }
                 },
                 UserCarts = new List<UserCart>()
                 {
