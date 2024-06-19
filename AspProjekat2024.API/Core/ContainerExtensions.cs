@@ -79,12 +79,10 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<DeletePictureDtoValidator>();
             services.AddTransient<IDeletePriceCommand, EfDeletePriceCommand>();
             services.AddTransient<DeletePriceDtoValidator>();
-
-
-
-
-
-
+            services.AddTransient<IDeleteSpecificationCommand, EfDeleteSpecificationCommand>();
+            services.AddTransient<DeleteSpecificationDtoValidator>();
+            services.AddTransient<IDeleteUserCommand, EfDeleteUserCommand>();
+            services.AddTransient<DeleteUSerDtoValidator>();
 
 
 

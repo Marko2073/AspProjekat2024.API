@@ -45,8 +45,12 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteSpecificationCommand command)
         {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
+
         }
 
         [HttpPut("{id}")]
