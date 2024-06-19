@@ -1,6 +1,8 @@
 ﻿using AspProjekat2024.Application.DTO;
+using AspProjekat2024.Application.DTO.Searches;
 using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
+using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +23,16 @@ namespace AspProjekat2024.API.Controllers
         }
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] BaseSearch search, [FromServices] IGetUsersQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_handler.HandleQuery(query, search));
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneUserQuery query)
         {
-            return "value";
+            return Ok(_handler.HandleQuery(query, id));
         }
 
         // POST api/<UsersController>

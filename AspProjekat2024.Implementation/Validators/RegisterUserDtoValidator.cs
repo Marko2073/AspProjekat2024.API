@@ -28,7 +28,6 @@ namespace AspProjekat2024.Implementation.Validators
                 .WithMessage("Phone number must be in format +38123456789");
             RuleFor(x => x.Address).NotEmpty();
             RuleFor(x => x.City).NotEmpty();
-            RuleFor(x => x.Path).NotEmpty();
 
 
         }

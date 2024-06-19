@@ -91,6 +91,9 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<DeletePurchaseDtoValidator>();
             services.AddTransient<ICreateProductCommand, EfCreateProductCommand>();
             services.AddTransient<InsertProductDtoValidator>();
+            services.AddTransient<IGetUsersQuery, EfGetUserQuery>();
+            services.AddTransient<IGetOneUserQuery, EfGetOneUserQuery>();
+            services.AddTransient<IGetOneSpecificationQuery, EfGetOneSpecificationQuery >();
 
 
 

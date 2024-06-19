@@ -41,7 +41,7 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
                 Address = data.Address,
                 City = data.City,
                 Password = BCrypt.Net.BCrypt.HashPassword(data.Password),
-                Path = data.Path,
+                Path = "/images/DefaultUser.png",
                 UseCases = new List<UserUseCase>()
                 {
                     new UserUseCase { UseCaseId = 1 },
@@ -64,9 +64,7 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it according to your needs
                 Console.WriteLine($"Failed to send email: {ex.Message}");
-                // Optional: throw a custom exception or handle the error gracefully
             }
         }
     }
