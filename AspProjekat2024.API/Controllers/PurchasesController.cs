@@ -24,6 +24,7 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<PurchasesController>
         [HttpPost]
+        [Authorize]
 
         public IActionResult Post([FromBody] CreatePurchaseDto dto, [FromServices] ICreatePurchaseCommand command)
         {
@@ -38,7 +39,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<PurchasesController>/5
         [HttpDelete("{id}")]
-        
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeletePurchaseCommand command)
         {
             dto.Id = id;
