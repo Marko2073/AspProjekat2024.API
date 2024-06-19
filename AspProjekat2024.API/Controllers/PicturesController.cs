@@ -1,4 +1,5 @@
-﻿using AspProjekat2024.Application.DTO.Creates;
+﻿using AspProjekat2024.Application.DTO;
+using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.DTO.Searches;
 using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
@@ -57,8 +58,12 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<PicturesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeletePictureCommand command)
         {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
+
         }
     }
 }

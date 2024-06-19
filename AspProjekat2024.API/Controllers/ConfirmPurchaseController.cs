@@ -18,20 +18,7 @@ namespace AspProjekat2024.API.Controllers
         {
             _handler = handler;
         }
-        // GET: api/<ConfirmPurchaseController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ConfirmPurchaseController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+        
         // POST api/<ConfirmPurchaseController>
         [HttpPost]
         [Authorize]
@@ -41,16 +28,5 @@ namespace AspProjekat2024.API.Controllers
             return StatusCode(201);
         }
 
-        // PUT api/<ConfirmPurchaseController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ConfirmPurchaseController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
