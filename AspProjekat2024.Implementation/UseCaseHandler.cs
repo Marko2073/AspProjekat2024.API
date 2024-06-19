@@ -71,11 +71,11 @@ namespace AspProjekat2024.Implementation
         }
         private void HandleCrossCuttingConcerns(IUseCase useCase, object data)
         {
-            //Autorizacija
-            //if (!_actor.AllowedUseCases.Contains(useCase.Id))
-            //{
-            //    throw new UnauthorizedAccessException();
-            //}
+            
+            if (!_actor.AllowedUseCases.Contains(useCase.Id))
+            {
+                throw new UnauthorizedAccessException();
+            }
 
             var log = new UseCaseLog
             {
