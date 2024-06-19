@@ -41,16 +41,6 @@ namespace AspProjekat2024.API.Controllers
 
         }
 
-        // PUT api/<UserCartsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UserCartsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+       
     }
 }

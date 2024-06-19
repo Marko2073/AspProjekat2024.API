@@ -1,4 +1,5 @@
-﻿using AspProjekat2024.Application.DTO.Creates;
+﻿using AspProjekat2024.Application.DTO;
+using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;
@@ -19,19 +20,7 @@ namespace AspProjekat2024.API.Controllers
             _handler = handler;
         }
 
-        // GET: api/<PurchasesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<PurchasesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
 
         // POST api/<PurchasesController>
         [HttpPost]
@@ -45,16 +34,16 @@ namespace AspProjekat2024.API.Controllers
 
         }
 
-        // PUT api/<PurchasesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        
 
         // DELETE api/<PurchasesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeletePurchaseCommand command)
         {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
+
         }
     }
 }
