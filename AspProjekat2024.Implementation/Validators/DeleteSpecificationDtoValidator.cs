@@ -31,6 +31,5 @@ namespace AspProjekat2024.Implementation.Validators
                 .WithMessage("Specification with an id of {PropertyValue} is used in ModelVersions.");
         }
     }
-    {
-    }
+    
 }

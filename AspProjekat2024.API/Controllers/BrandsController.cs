@@ -33,9 +33,9 @@ namespace AspProjekat2024.API.Controllers
 
         // GET api/<BrandsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices] IGetOneBrandQuery query)
         {
-            return "value";
+            return Ok(_handler.HandleQuery(query, id));
         }
 
         // POST api/<BrandsController>

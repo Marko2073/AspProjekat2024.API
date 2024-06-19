@@ -1,5 +1,7 @@
 ﻿using AspProjekat2024.Application.DTO.Creates;
+using AspProjekat2024.Application.DTO.Searches;
 using AspProjekat2024.Application.UseCases.Commands;
+using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,9 @@ namespace AspProjekat2024.API.Controllers
         }
         // GET: api/<UserCartsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] BaseSearch search, [FromServices] IGetOrdersQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_handler.HandleQuery(query, search));
         }
 
         // GET api/<UserCartsController>/5

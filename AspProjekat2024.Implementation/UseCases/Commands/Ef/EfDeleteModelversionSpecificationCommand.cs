@@ -2,6 +2,7 @@
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.DataAccess;
 using AspProjekat2024.Implementation.Validators;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
