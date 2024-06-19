@@ -24,11 +24,12 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<PurchasesController>
         [HttpPost]
+
         public IActionResult Post([FromBody] CreatePurchaseDto dto, [FromServices] ICreatePurchaseCommand command)
         {
             _handler.HandleCommand(command, dto);
             return StatusCode(201);
-
+            //da bi se menjao quantity u cartu salje se +1 ili -1, kada se dodje do 0 onda se brise iz cart-a
 
 
         }
@@ -43,6 +44,7 @@ namespace AspProjekat2024.API.Controllers
             dto.Id = id;
             _handler.HandleCommand(command, dto);
             return StatusCode(204);
+            // brisanje iz cart-a
 
         }
     }
