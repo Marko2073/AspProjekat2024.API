@@ -37,14 +37,7 @@ public class EfCreatePictureCommand : EfUseCase, ICreatePictureCommand
                 request.PicturePath.CopyTo(fs);
             }
 
-            var picture = new Picture
-            {
-                ModelVersionId = request.ModelVersionId,
-                Path = "/images/" + filename
-            };
-
-            Context.Pictures.Add(picture);
-            Context.SaveChanges();
+            
         }
     }
 }

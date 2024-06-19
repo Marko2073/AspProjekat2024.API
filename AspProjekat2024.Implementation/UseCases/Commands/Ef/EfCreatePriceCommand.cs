@@ -23,10 +23,8 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
 
         public void Execute(CreatePriceDto request)
         {
-            // Validate the request
             _validator.ValidateAndThrow(request);
 
-            // Convert string dates to DateTime
             if (!DateTime.TryParse(request.DateFrom, out var dateFrom))
             {
                 throw new ValidationException("DateFrom is not a valid date");
@@ -36,7 +34,6 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
                 throw new ValidationException("DateTo is not a valid date");
             }
 
-            // Add the new Price to the context
             Context.Prices.Add(new Domain.Price
             {
                 PriceValue = request.Price,
@@ -45,7 +42,6 @@ namespace AspProjekat2024.Implementation.UseCases.Commands.Ef
                 DateTo = dateTo
             });
 
-            // Save changes to the database
             Context.SaveChanges();
         }
     }

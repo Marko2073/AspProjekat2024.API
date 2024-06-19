@@ -1,4 +1,8 @@
-﻿using AspProjekat2024.Application.DTO.Searches;
+﻿using AspProjekat2024.Application.DTO;
+using AspProjekat2024.Application.DTO.Creates;
+using AspProjekat2024.Application.DTO.Gets;
+using AspProjekat2024.Application.DTO.Searches;
+using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
 using Microsoft.AspNetCore.Authorization;
@@ -35,20 +39,24 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
 
-        // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [Authorize]
+        [Consumes("multipart/form-data")]
+        public IActionResult Post([FromBody] InsertProductDto dto, [FromServices] ICreateProductCommand command)
         {
+            _handler.HandleCommand(command, dto);
+            return StatusCode(201);
+
         }
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteModelVersionCommand command)
         {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
+
         }
     }
 }

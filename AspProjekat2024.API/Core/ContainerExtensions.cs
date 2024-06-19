@@ -89,6 +89,9 @@ namespace AspProjekat2024.API.Core
             services.AddTransient<IGetOneModelVersionQuery, EfGetOneModelVersionQuery>();
             services.AddTransient<IDeletePurchaseCommand, EfDeletePurchaseCommand>();
             services.AddTransient<DeletePurchaseDtoValidator>();
+            services.AddTransient<ICreateProductCommand, EfCreateProductCommand>();
+            services.AddTransient<InsertProductDtoValidator>();
+
 
 
 
