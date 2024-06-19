@@ -5,6 +5,7 @@ using AspProjekat2024.Application.DTO.Updates;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
 
@@ -37,6 +38,7 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<SpecificationsController>
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] CreateSpecificationDto dto, [FromServices] ICreateSpecificationCommand command)
         {
             _handler.HandleCommand(command, dto);
@@ -48,6 +50,7 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<SpecificationsController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] UpdateSpecificationDto dto, [FromServices] IUpdateSpecificationCommand command)
         {
             dto.Id = id;
@@ -57,6 +60,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<SpecificationsController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteSpecificationCommand command)
         {
             dto.Id = id;

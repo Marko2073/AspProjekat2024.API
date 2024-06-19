@@ -49,6 +49,7 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<PricesController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id,[FromBody] UpdatePriceDto dto, [FromServices] IUpdatePriceCommand command)
         {
             _handler.HandleCommand(command, dto);
@@ -60,6 +61,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<PricesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeletePriceCommand command)
         {
             dto.Id = id;

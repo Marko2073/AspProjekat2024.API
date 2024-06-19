@@ -49,6 +49,7 @@ namespace AspProjekat2024.API.Controllers
         // PUT api/<PicturesController>/5
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
+        [Authorize]
         public IActionResult Put(int id,[FromForm] UpdatePictureDto dto, [FromServices] IUpdatePictureCommand command)
         {
             dto.Id = id;
@@ -58,6 +59,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<PicturesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeletePictureCommand command)
         {
             dto.Id = id;

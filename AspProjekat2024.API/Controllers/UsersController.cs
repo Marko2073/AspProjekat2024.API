@@ -45,6 +45,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteSpecificationCommand command)
         {
             dto.Id = id;

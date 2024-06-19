@@ -24,7 +24,6 @@ namespace AspProjekat2024.API.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        [Authorize]
         public IActionResult Get([FromQuery] ProductsSearch search, [FromServices] IGetProductsQuery query)
         {
             return Ok(_handler.HandleQuery(query, search));
@@ -51,6 +50,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteModelVersionCommand command)
         {
             dto.Id = id;

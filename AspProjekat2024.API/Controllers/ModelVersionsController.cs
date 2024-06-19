@@ -48,6 +48,7 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<ModelVersionsController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] UpdateModelVersionDto dto, [FromServices] IUpdateModelVersionCommand command)
         {
             dto.Id = id;
@@ -57,6 +58,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<ModelVersionsController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteModelVersionCommand command)
         {
             dto.Id = id;

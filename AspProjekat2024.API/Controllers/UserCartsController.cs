@@ -3,6 +3,7 @@ using AspProjekat2024.Application.DTO.Searches;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
 using AspProjekat2024.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,15 +26,9 @@ namespace AspProjekat2024.API.Controllers
             return Ok(_handler.HandleQuery(query, search));
         }
 
-        // GET api/<UserCartsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<UserCartsController>
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] CreateUserCartDto dto, [FromServices] ICreateUserCartCommand command)
         {
             _handler.HandleCommand(command, dto);

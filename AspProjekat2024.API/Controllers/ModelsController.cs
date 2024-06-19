@@ -23,8 +23,6 @@ namespace AspProjekat2024.API.Controllers
         }
         // GET: api/<ModelsController>
         [HttpGet]
-        [Authorize]
-
         public IActionResult Get([FromQuery] BaseSearch search, [FromServices] IGetModelsQuery query)
         {
             return Ok(_handler.HandleQuery(query, search));
@@ -39,6 +37,7 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<ModelsController>
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] CreateModelDto dto, [FromServices] ICreateModelCommand command)
         {
             _handler.HandleCommand(command, dto);
@@ -47,6 +46,7 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<ModelsController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] UpdateModelDto dto, [FromServices] IUpdateModelCommand command)
         {
             dto.Id = id;
@@ -56,6 +56,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<ModelsController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeleteModelCommand command)
         {
             dto.Id = id;

@@ -25,7 +25,7 @@ namespace AspProjekat2024.API.Controllers
 
         // GET: api/<BrandsController>
         [HttpGet]
-        [Authorize]
+        
         public IActionResult Get([FromQuery]BaseSearch search, [FromServices] IGetBrandsQuery query)
         {
             return Ok(_handler.HandleQuery(query, search));
@@ -52,6 +52,7 @@ namespace AspProjekat2024.API.Controllers
 
         // PUT api/<BrandsController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] UpdateBrandDto dto, [FromServices] IUpdateBrandCommand command)
         {
             dto.Id = id;
@@ -62,6 +63,7 @@ namespace AspProjekat2024.API.Controllers
 
         // DELETE api/<BrandsController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices]IDeleteBrandCommand command)
         {
             dto.Id = id;
