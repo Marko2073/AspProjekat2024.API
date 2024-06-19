@@ -1,4 +1,5 @@
-﻿using AspProjekat2024.Application.DTO.Creates;
+﻿using AspProjekat2024.Application;
+using AspProjekat2024.Application.DTO.Creates;
 using AspProjekat2024.Application.DTO.Searches;
 using AspProjekat2024.Application.UseCases.Commands;
 using AspProjekat2024.Application.UseCases.Queries;
@@ -15,9 +16,11 @@ namespace AspProjekat2024.API.Controllers
     public class UserCartsController : ControllerBase
     {
         private readonly UseCaseHandler _handler;
-        public UserCartsController(UseCaseHandler handler)
+        private readonly IApplicationActorProvider _actor;
+        public UserCartsController(UseCaseHandler handler, IApplicationActorProvider actor)
         {
             _handler = handler;
+            _actor = actor;
         }
         // GET: api/<UserCartsController>
         [HttpGet]
@@ -28,9 +31,9 @@ namespace AspProjekat2024.API.Controllers
 
         // POST api/<UserCartsController>
         [HttpPost]
-        [Authorize]
         public IActionResult Post([FromBody] CreateUserCartDto dto, [FromServices] ICreateUserCartCommand command)
         {
+            dto.UserId = _actor.GetActor().Id;
             _handler.HandleCommand(command, dto);
             return StatusCode(201);
 

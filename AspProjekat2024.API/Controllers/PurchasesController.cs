@@ -40,6 +40,7 @@ namespace AspProjekat2024.API.Controllers
         // DELETE api/<PurchasesController>/5
         [HttpDelete("{id}")]
         [Authorize]
+        
         public IActionResult Delete(int id, [FromBody] DeleteDto dto, [FromServices] IDeletePurchaseCommand command)
         {
             dto.Id = id;
